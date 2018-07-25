@@ -15,23 +15,21 @@ class RoomList extends Component {
       this.setState({ rooms: this.state.rooms.concat(room) })
    });
  }
+  createRoom(name){
+    const rooms = this.state.newRoomName
+    this.roomsRef.push({name: name});
+    }
+
    handleSubmit(e) {
     e.preventDefault();
     if (!this.state.newRoomName){
       return newRoomName;}
-    const newRoom = { rooms: this.state.newRoomName};
-    this.roomsRef.push({rooms: this.state.newRoomName], newRoomName: ''});
+    {
+      createRoom(this.state.newRoomName);
     }
-  handleChange(e){
+   handleChange(e) {
     this.setState({newRoomName: e.target.value})
-    );
   }
-  deleteRoom() {
-    const rooms = this.state.rooms.slice();
-    const filteredRooms = rooms.filter();
-    this.setState({ rooms:filteredRooms })
-  }
-
 
   render() {
     return (
@@ -45,7 +43,6 @@ class RoomList extends Component {
            value={this.state.newRoomName}
            onChange= { (e) => this.handleChange(e) } />
           <input type="submit" value="Create"/>
-          <button type="button" onClick={() => this.deleteRoom()}>Delete</button>
         </form>
         </div>
        </section>
