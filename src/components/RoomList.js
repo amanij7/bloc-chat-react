@@ -23,10 +23,12 @@ class RoomList extends Component {
    handleSubmit(e) {
     e.preventDefault();
     if (!this.state.newRoomName){
-      return newRoomName
+      return
     }
-      createRoom(this.state.newRoomName);
+      this.createRoom(this.state.newRoomName);
+      this.setState({ newRoomName: "" });
     }
+
    handleChange(e) {
     this.setState({newRoomName: e.target.value});
   }
