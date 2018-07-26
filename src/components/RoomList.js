@@ -14,6 +14,23 @@ class RoomList extends Component {
       room.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat(room) })
    });
+ }
+  createRoom(name){
+    const rooms = this.state.newRoomName
+    this.roomsRef.push({name: name});
+    }
+
+   handleSubmit(e) {
+    e.preventDefault();
+    if (!this.state.newRoomName){
+      return
+    }
+      this.createRoom(this.state.newRoomName);
+      this.setState({ newRoomName: "" });
+    }
+
+   handleChange(e) {
+    this.setState({newRoomName: e.target.value});
   }
 
   render() {
@@ -22,8 +39,17 @@ class RoomList extends Component {
       {this.state.rooms.map((room, index) =>
         <div key={index}>{room.name}</div>
       )}
-     </section>
-    )
+      <div id="create-room">
+         <form onSubmit={ (e) => this.handleSubmit(e) }>
+          <input type="text"
+           value={this.state.newRoomName}
+           onChange= { (e) => this.handleChange(e) } />
+          <input type="submit" value="Create"/>
+        </form>
+        </div>
+       </section>
+       );
   }
-}
- export default RoomList
+ }
+
+export default RoomList
