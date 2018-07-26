@@ -50,6 +50,6 @@ class RoomList extends Component {
        </section>
        );
   }
- }
+}
 
 export default RoomList
