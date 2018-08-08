@@ -11,7 +11,7 @@ class RoomList extends Component {
   componentDidMount() {
     this.roomsRef.on('child_added', snapshot => {
       const room = snapshot.val();
-      room.key = snapshot.key;
+      room.key = snapshot.key;  //adding a key properity to the room object and associating it with the key properity of snapshot object
       this.setState({ rooms: this.state.rooms.concat(room) })
    });
  }
@@ -37,7 +37,10 @@ class RoomList extends Component {
     return (
       <section>
       {this.state.rooms.map((room, index) =>
-        <div key={index}>{room.name}</div>
+        <div className="rooms" key={index}
+               onClick={() => this.props.activeRoom(room)} >
+             {room.name}
+          </div>
       )}
       <div id="create-room">
          <form onSubmit={ (e) => this.handleSubmit(e) }>

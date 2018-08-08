@@ -2,40 +2,58 @@ import React, { Component } from 'react';
 
 class MessageList extends Comp {
   constructor(props){
-    super(props);
+    super(props)
+      this.messagesRef = this.props.firebase.database().ref('messages');
   }
-  componentDidMount() {
-    this.roomsRef.on('child_added', snapshot => {
-      const room = snapshot.val();
-      room.key = snapshot.key;
-      this.setState({ messages: this.state.rooms.concat(messages) })
+
+
+componentDidMount() {
+    this.messagesRef.on('child_added', snapshot => {
+      const message = snapshot.val();
+      message.key = snapshot.key;
+      this.setState({ messages: this.state.messages.concat(message) })
    });
 }
 handleChange(e) {
-  this.setState({newMessage: e.target.value});
+  e.preventDefault();
+  this.setState({
+    username: this.state.username,
+    content: this.state.content,
+    sentAt: this.state.firebase.darabase.ServerValue.TIMESTAMP,
+    roomId: this.state.roomId
+  });
 }
 
-handleSubmit() {
+handleSubmit(e) {
   e.preventDefault();
   this.setState ({
     username: this.state.username,
     content: this.state.content,
-    sentAt: this.state.sentAt,
-    roomId: this.state.roomID
+    sentAt: this.state.firebase.database.ServerValue.TIMESTAMP,
+    roomId: this.state.roomId
   });
-
+  this.setState({usermane:'', content: '', sentAt: '', roomId: ''});
 }
+  deleteMessage(message) {
+    this.messageRef.child(message.key).remove();
+  }
 render() {
-  return {
+  return (
   <div>
+  <ul>
+    {this.state.messages.map(message => {
+      <li> {message.content} </li>
+    }
+    )}
+  </ul>
     <form onSubmit={ (e) => this.handleSubmit() } />
       <input type="text" value= {this.state.newMessage}
-      onChange= this.handleChange(e) />
+      onChange= {this.handleChange(e)} />
       <input type="submit" />
     </form>
   </div>
 
-  }
+)
 }
 
 export default MessageList
