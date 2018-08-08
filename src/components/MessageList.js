@@ -46,7 +46,7 @@ render() {
     }
     )}
   </ul>
-    <form onSubmit={ (e) => this.handleSubmit() } />
+    <form onSubmit={ (e) => this.handleSubmit() } >
       <input type="text" value= {this.state.newMessage}
       onChange= {this.handleChange(e)} />
       <input type="submit" />
