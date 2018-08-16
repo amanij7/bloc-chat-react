@@ -43,7 +43,6 @@ render() {
   <ul>
     {this.state.messages.map(message => {
       <li> {message.content} </li>
-    }
     )}
   </ul>
     <form onSubmit={ (e) => this.handleSubmit() } >
@@ -53,7 +52,8 @@ render() {
     </form>
   </div>
 
-)
+);
+  }
 }
 
-export default MessageList
+export default MessageList ;
