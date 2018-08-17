@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class MessageList extends Comp {
+class MessageList extends Component {
   constructor(props){
     super(props)
       this.messagesRef = this.props.firebase.database().ref('messages');
@@ -43,11 +43,12 @@ render() {
   <ul>
     {this.state.messages.map(message => {
       <li> {message.content} </li>
+    }
     )}
   </ul>
-    <form onSubmit={ (e) => this.handleSubmit() } >
+    <form onSubmit={ (e) => this.handleSubmit(e) } >
       <input type="text" value= {this.state.newMessage}
-      onChange= {this.handleChange(e)} />
+      onChange= {(e) => {this.handleChange(e)}} />
       <input type="submit" />
     </form>
   </div>

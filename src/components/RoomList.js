@@ -55,4 +55,4 @@ class RoomList extends Component {
   }
 }
 
-export default MessageList
+export default RoomList ;
