@@ -19,13 +19,10 @@ firebase.initializeApp(config);
 class App extends Component {
    constructor(props){
      super(props)
-   }
-this.state = {
-   activeRoom:{name: ''},
-   userName: {user: ''}
-    }
-  this.changeActiveRoom = this.changeActiveRoom.bind(this);
-  this.setUser = this.setUser.bind(this);
+     this.state = {
+     activeRoom(room) {
+      this.setState({activeRoom: room})
+ }
 
   render() {
     return (
