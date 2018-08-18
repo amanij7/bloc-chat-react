@@ -20,10 +20,12 @@ class App extends Component {
    constructor(props){
      super(props)
    }
-    activeRoom(room) {
-      console.log(room);
-      this.setState({activeRoom: room})
+this.state = {
+   activeRoom:{name: ''},
+   userName: {user: ''}
     }
+  this.changeActiveRoom = this.changeActiveRoom.bind(this);
+  this.setUser = this.setUser.bind(this);
 
   render() {
     return (
