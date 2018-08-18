@@ -20,8 +20,7 @@ class App extends Component {
    constructor(props){
      super(props)
      this.state = {
-     activeRoom(room) {
-      this.setState({activeRoom: room})
+     activeRoom:""
  }
 
   render() {
@@ -34,6 +33,5 @@ class App extends Component {
       </div>
     );
   }
-}
 
 export default App;
