@@ -20,10 +20,10 @@ class App extends Component {
    constructor(props){
      super(props)
      this.state = {
-     activeRoom:""
+     activeRoom:"" ,
      userName:""
  }
-
+}
   render() {
     return (
       <div className="App">
@@ -34,5 +34,5 @@ class App extends Component {
       </div>
     );
   }
-
+}
 export default App;
