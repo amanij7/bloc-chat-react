@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 
 class MessageList extends Component {
   constructor(props){
-    super(props)
+    super(props);
+    this.state = {
+      message:"" ,
+      username:"" ,
+      sentAt: "" ,
+      roomId: ""
+    };
       this.messagesRef = this.props.firebase.database().ref('messages');
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
