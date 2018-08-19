@@ -51,6 +51,7 @@ class RoomList extends Component {
         </form>
         </div>
        </section>
+       <SetActiveRoom firebase={firebase} setActiveRoom={this.setActiveRoom.bind(this)}>
        );
   }
 }

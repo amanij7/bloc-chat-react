@@ -50,8 +50,8 @@ render() {
   return (
   <div>
   <ul>
-    {this.state.messages.map(message => {
-      <li> {message.content} </li>
+    {this.state.messages.map((message,index) => {
+      <li key={index}> {message.content} </li>
     }
     )}
   </ul>
@@ -61,6 +61,7 @@ render() {
       <input type="submit" />
     </form>
   </div>
+  <ActiveRoom firebase={firebase} activeRoom={this.props.activeRoom}>
 
 );
   }
