@@ -28,7 +28,7 @@ handleChange(e) {
   this.setState({
     username: this.state.username,
     content: this.state.content,
-    sentAt: this.state.firebase.database.ServerValue.TIMESTAMP,
+    sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
     roomId: this.state.roomId
   });
 }
@@ -38,7 +38,7 @@ handleSubmit(e) {
   this.messagesRef.push ({
     username: this.state.username,
     content: this.state.content,
-    sentAt: this.state.firebase.database.ServerValue.TIMESTAMP,
+    sentAt: this.props.sentAt,
     roomId: this.state.roomId
   });
   this.setState({usermane:'', content: '', sentAt: '', roomId: ''});
@@ -58,7 +58,7 @@ render() {
     <form onSubmit={ (e) => this.handleSubmit(e) } >
       <input type="text" value= {this.state.newMessage}
       onChange= {(e) => {this.handleChange(e)}} />
-      <input type="submit" />
+      <input type="submit"  value="Submit Message"/>
     </form>
   </div>
 );
