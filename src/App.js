@@ -23,11 +23,11 @@ class App extends Component {
       activeRoom:"" ,
       userName:""
   }
-
+}
   setActiveRoom(room) {
+  console.log(room);
     this.setState({activeRoom: room});
   }
-}
 
   render() {
     return (

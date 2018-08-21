@@ -28,7 +28,7 @@ handleChange(e) {
   this.setState({
     username: this.state.username,
     content: this.state.content,
-    sentAt: this.state.firebase.darabase.ServerValue.TIMESTAMP,
+    sentAt: this.state.firebase.database.ServerValue.TIMESTAMP,
     roomId: this.state.roomId
   });
 }
@@ -61,8 +61,6 @@ render() {
       <input type="submit" />
     </form>
   </div>
-  <ActiveRoom firebase={firebase} activeRoom={this.props.activeRoom}>
-
 );
   }
 }
