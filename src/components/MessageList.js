@@ -39,6 +39,10 @@ handleSubmit(e) {
   });
   this.setState({content: ''});
 }
+formatTime(time) {
+  var date = new Date(time);
+  return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + date.getHours() + ":" + date.getMinutes();
+}
   deleteMessage(message) {
     this.messageRef.child(message.key).remove();
   }
@@ -49,7 +53,7 @@ render() {
   <ul>
     {this.state.messages.filter((message) => message.roomId === this.props.activeRoom.key).map((message,index) => (
       <li key={index}> {message.content} </li>
-      <li format="MM/DD/YYYY HH:MM:SS">{message.sentAt}</li>
+      <li key={index}>{this.props.formatTime(time(message.sentAt)}</li>
     )
     )}
   </ul>
