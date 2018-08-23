@@ -5,10 +5,7 @@ class MessageList extends Component {
     super(props);
     this.state = {
       messages:[] ,
-      username:"" ,
       content: "" ,
-      sentAt: "" ,
-      roomId: ""
     };
       this.messagesRef = this.props.firebase.database().ref('messages');
       this.handleChange = this.handleChange.bind(this);
@@ -20,28 +17,27 @@ componentDidMount() {
     this.messagesRef.on('child_added', snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
+      console.log(message);
       this.setState({ messages: this.state.messages.concat(message) })
    });
 }
 handleChange(e) {
+  console.log(e.target.value);
   e.preventDefault();
   this.setState({
-    username: this.state.username,
-    content: this.state.content,
-    sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
-    roomId: this.state.roomId
+    content: e.target.value,
   });
 }
 
 handleSubmit(e) {
   e.preventDefault();
   this.messagesRef.push ({
-    username: this.state.username,
+    userName: this.props.userName,
     content: this.state.content,
-    sentAt: this.props.sentAt,
-    roomId: this.state.roomId
+    sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+    roomId: this.props.activeRoom.key
   });
-  this.setState({usermane:'', content: '', sentAt: '', roomId: ''});
+  this.setState({content: ''});
 }
   deleteMessage(message) {
     this.messageRef.child(message.key).remove();
@@ -49,14 +45,16 @@ handleSubmit(e) {
 render() {
   return (
   <div>
+  <h3>{this.props.activeRoom.name}</h3>
   <ul>
-    {this.state.messages.map((message,index) => {
+    {this.state.messages.filter((message) => message.roomId === this.props.activeRoom.key).map((message,index) => (
       <li key={index}> {message.content} </li>
-    }
+      <li format="MM/DD/YYYY HH:MM:SS">{message.sentAt}</li>
+    )
     )}
   </ul>
     <form onSubmit={ (e) => this.handleSubmit(e) } >
-      <input type="text" value= {this.state.newMessage}
+      <input type="text" value= {this.state.content}
       onChange= {(e) => {this.handleChange(e)}} />
       <input type="submit"  value="Submit Message"/>
     </form>
