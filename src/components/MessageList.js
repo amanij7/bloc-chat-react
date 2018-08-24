@@ -52,8 +52,7 @@ render() {
   <h3>{this.props.activeRoom.name}</h3>
   <ul>
     {this.state.messages.filter((message) => message.roomId === this.props.activeRoom.key).map((message,index) => (
-      <li key={index}> {message.content} </li>
-      <li key={index}>{this.props.formatTime(time(message.sentAt)}</li>
+      <li key={index}> {message.content} {this.formatTime(message.sentAt)}</li>
     )
     )}
   </ul>
