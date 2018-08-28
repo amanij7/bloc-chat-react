@@ -42,7 +42,9 @@ handleSubmit(e) {
 formatTime(time) {
   console.log(time);
   var date = new Date(time);
-  return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+  if( this.hours >12 )
+  { this.hours = this.hours - 12; }
+  return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + (date.getHours() % 12)+ ":" + date.getMinutes();
 }
   deleteMessage(message) {
     this.messageRef.child(message.key).remove();
