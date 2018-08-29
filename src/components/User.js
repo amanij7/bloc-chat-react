@@ -29,7 +29,7 @@ handleChange(user) {
 render() {
   return (
     <section>
-    <h3>{(this.props.currentUser) ? this.props.currentUser.displayName : 'Guest'}</h3>
+        <h3>{(this.props.userName) ? this.props.userName : 'Guest'}</h3>
         <button onClick={this.signIn.bind(this)} onChange={(user) => this.handleChange(user)}>Sign In</button>
         <button onClick={this.signOut.bind(this)}>Sign Out</button>
     </section>
