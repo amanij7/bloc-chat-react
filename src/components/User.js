@@ -18,9 +18,10 @@ signOut() {
 
 handleChange(user) {
    const login = user;
-   if (signIn == true) {
+   console.log(user);
+   if (user == true) {
      this.signOut();
-   } else if (signIn == false){
+   } else {
      this.signIn();
    }
  }
@@ -30,7 +31,6 @@ render() {
     <section>
         <button onClick={this.signIn.bind(this)} onChange={(user) => this.handleChange(user)}>Sign In</button>
         <button onClick={this.signOut.bind(this)}>Sign Out</button>
-        }
     </section>
     );
   }
