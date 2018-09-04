@@ -42,12 +42,13 @@ handleSubmit(e) {
 formatTime(time) {
   console.log(time);
   var date = new Date(time);
-  if(this.minutes < 10) {
-    this.minutes = '0' + this.minutes;
+  var minutes = date.getMinutes();
+  if(minutes < 10) {
+    minutes = '0' + minutes;
   }
   if( this.hours >12 )
   { this.hours = this.hours - 12; }
-  return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + (date.getHours() % 12)+ ":" + date.getMinutes();
+  return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + (date.getHours() % 12)+ ":" + minutes;
 }
   deleteMessage(message) {
     this.messageRef.child(message.key).remove();
